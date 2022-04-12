@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+</head>
+<style>
+    #navbar{
+        background-color: aquamarine;
+        display: flex;
+    }
+    .home{
+        width: 30%;
+        text-align: center;
+    }
+    #inp{
+        margin-left: 30%;
+        width: 20%;
+        padding:10%;
+        /* border: 2px solid black; */
+    }
+    select{
+        height: 25px;
+    }
+</style>
+<body>
+   <div id="navbar">
+    <div class="home">
+        <p><a href="index.html">HOME</a></p>
+    </div> <div class="home">
+        <p><a href="contact.html">CONTACT</a></p>
+    </div>
+    <div class="home">
+        <p><a href="favourites.html">Favourites</a></p>
+    </div>
+   </div>
+
+<div id="inp">
+    <label for="">Name</label> <br><input type="text" id="name" placeholder="Enter Contact Name">
+    <br>
+    <br>
+    <label for="">Mobile Number</label><br><input type="text" id="number" placeholder="Enter Mobile Number">
+    <br> <br>
+    <label for="">Select Type</label><select id="group">
+        <option value="Friends">Friends</option>
+        <option value="Family">Family</option>
+        <option value="Others">Others</option>
+    </select>
+    <br><br>
+    <!-- <label for="">select as favourites</label>
+   <select id="fav">
+       
+        <option value="n">NO</option>
+        <option value="y">Yes</option>
+       
+    </select> -->
+    <br> <br>
+ <button onclick="add()">SAVE CONTACT</button>
+</div>
+
+
+</body>
+<script> if(JSON.parse(localStorage.getItem("contactList"))==null)
+    {var contact=[]}else{
+       contact= JSON.parse(localStorage.getItem("contactList"))
+    }
+    function add(){
+        myobj={
+            name:document.getElementById('name').value,
+            mobile:document.getElementById('number').value,
+            g:document.getElementById('group').value,
+           
+        }
+alert("added")
+contact.push(myobj)
+localStorage.setItem("contactList", JSON.stringify(contact))
+    }
+</script>
+</html>

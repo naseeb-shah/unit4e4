@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact List</title>
+</head>
+<style>
+     #navbar{
+        background-color: aquamarine;
+        display: flex;
+    }
+    .home{
+        width: 30%;
+        text-align: center;
+    }
+    #sai{
+      
+        width: 80%;
+        margin: 10%;
+    }
+</style>
+
+<body>
+    <div id="navbar">
+        <div class="home">
+            <p><a href="index.html">HOME</a></p>
+        </div> <div class="home">
+            <p><a href="contact.html">CONTACT</a></p>
+        </div>
+        <div class="home">
+            <p><a href="favourites.html">Favourites</a></p>
+        </div>
+       </div>
+       <div id="sai"></div>
+</body>
+<script>
+    
+ var con=JSON.parse(localStorage.getItem("favourites"))
+if(JSON.parse(localStorage.getItem("favourites"))==null){
+    alert("NO favourites contact")
+}
+  var  table=document.createElement('table')
+
+  var tbody=document.createElement('tbody')
+  var row=document.createElement('tr')
+
+      var cell=document.createElement('td');
+      var celltext= document.createTextNode("Name");
+      cell.appendChild(celltext)
+      row.appendChild(cell)
+      var cell=document.createElement('td');
+      var celltext= document.createTextNode("Mobile");
+      cell.appendChild(celltext)
+      row.appendChild(cell)
+      var cell=document.createElement('td');
+      var celltext= document.createTextNode('Group');
+      cell.appendChild(celltext)
+      row.appendChild(cell)
+      var cell=document.createElement('td');
+      var celltext= document.createTextNode('Favourites');
+      cell.appendChild(celltext)
+      row.appendChild(cell)
+
+      tbody.appendChild(row)
+//   for(var j =0;j<con.length;j++){
+    con.forEach(function(e,i) {
+        
+   
+  var row=document.createElement('tr')
+
+      var cell=document.createElement('td');
+      var celltext= document.createTextNode(e.name);
+      cell.appendChild(celltext)
+      row.appendChild(cell)
+      var cell=document.createElement('td');
+      var celltext= document.createTextNode(e.mobile);
+      cell.appendChild(celltext)
+      row.appendChild(cell)
+      var cell=document.createElement('td');
+      var celltext= document.createTextNode(e.g);
+      cell.appendChild(celltext)
+      row.appendChild(cell)
+      var cell=document.createElement('td');
+      var b= document.createElement('button');
+      b.id='fav'
+      b.innerText="Remove"
+      b.addEventListener('click',function(){
+        con.splice(i,1)
+        localStorage.setItem("favourites", JSON.stringify(con));
+    window.location.reload()  
+    })
+      cell.appendChild(b)
+
+      row.appendChild(cell)
+    
+ 
+tbody.appendChild(row)
+});
+table.appendChild(tbody)
+table.setAttribute('border','2px')
+document.getElementById('sai').appendChild(table)
+</script>
+</html>
